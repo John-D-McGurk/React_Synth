@@ -1,0 +1,14 @@
+{
+    "panels": {
+        "knobs": [
+            "gain"
+        ],
+        "envelope": [
+            "attack",
+                        "decay",
+                        "sustain",
+
+            "release"
+        ]
+    }
+}
