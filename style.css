@@ -1,0 +1,36 @@
+.panel {
+    display: flex;
+    margin: 10px;
+}
+
+.knob,
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#keyboard {
+    position: absolute;
+    border: 5px solid black;
+    height: 200px;
+}
+
+.keyboard--white-note {
+    float: left;
+    width: 45px;
+    height: 100%;
+    background: white;
+    border-right: 1px solid black;
+    position: relative;
+}
+
+.keyboard--black-note {
+    position: absolute;
+    height: 65%;
+    width: 55%;
+    left: 100%;
+    transform: translateX(-50%);
+    background: #000;
+    z-index: 1;
+}

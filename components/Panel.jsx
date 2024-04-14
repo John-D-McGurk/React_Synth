@@ -32,12 +32,24 @@ export default function Panel(props) {
     };
   } else {
     InputsObject = props.contents.inputs;
+    // for const [key, value] of Object.entries(InputsObject)
   }
 
   if (InputsObject) {
     for (const [key, value] of Object.entries(InputsObject)) {
       const Type = components[value.type];
-      inputs.push(<Type label={Object.keys(InputsObject)[i]} />);
+      // console.log(props);
+      if (props.settings) {
+        value.setting = props.settings[key];
+      }
+      inputs.push(
+        <Type
+          handleChange={props.handleChange}
+          label={key}
+          setting={value.setting}
+          panel={props.name}
+        />
+      );
       i++;
     }
     return <div className="panel">{inputs}</div>;

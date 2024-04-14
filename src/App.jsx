@@ -1,5 +1,5 @@
 import Instrument from "../components/Instrument";
-import basic from "../synthesizers/basic.json";
+import basic from "../synthesizers/basic/basic.json";
 
 export default function App() {
   return (

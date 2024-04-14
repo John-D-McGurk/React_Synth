@@ -1,0 +1,16 @@
+{
+  "panels": {
+    "controls": {
+      "gain": 50,
+      "filter": 0,
+      "on": true
+    },
+    "envelope": {
+      "attack": 20,
+      "decay": 20,
+      "sustain": 60,
+      "release": 20
+    }
+  },
+  "octaves": [3, 4, 5]
+}
