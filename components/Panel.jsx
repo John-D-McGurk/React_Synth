@@ -25,6 +25,11 @@ export default function Panel(props) {
         type: "Knob",
       },
     };
+  } else if (props.name === "octave" && props.contents) {
+    InputsObject = {
+      octaveUp: { type: "Button" },
+      octaveDown: { type: "Button" },
+    };
   } else {
     InputsObject = props.contents.inputs;
   }

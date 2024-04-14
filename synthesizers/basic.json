@@ -9,10 +9,11 @@
         "on": { "type": "Button" }
       }
     },
-    "envelope": true
-  },
-  "buttons": {
+    "envelope": true,
     "octave": true
   },
-  "instruments": ["keyboard"]
+
+  "inputs": {
+    "keyboard": true
+  }
 }
