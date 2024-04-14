@@ -5,7 +5,8 @@ export default function Knob(props) {
   // function handleChange(e) {
   //   setValue(e.target.value);
   // }
-
+  // props.settings.panels[props.panel][props.label];
+  // console.log(props.settings.panels[props.panel][props.label]);
   return (
     <div className="knob">
       <span className="knob--label">{props.label}</span>
@@ -15,7 +16,7 @@ export default function Knob(props) {
         type="range"
         min={0}
         max={100}
-        // value={value}
+        value={props.settings.panels[props.panel][props.label]}
         onChange={props.handleChange}
         className="slider"
       />

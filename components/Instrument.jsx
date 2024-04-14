@@ -15,7 +15,7 @@ export default function Instrument(props) {
     setState((prevState) => {
       return {
         ...prevState,
-        panels: { pitchMod: { pitch: 50, mod: 0 } },
+        panels: { ...prevState.panels, pitchMod: { pitch: 50, mod: 0 } },
       };
     });
   }
@@ -24,13 +24,21 @@ export default function Instrument(props) {
     const targetValue = e.target.value,
       targetName = e.target.name,
       targetPanel = e.target.dataset.panel;
+    console.log(state.panels.envelope);
     setState((prevState) => {
       return {
         ...prevState,
-        [targetPanel]: { [targetName]: [targetValue] },
+        panels: {
+          ...prevState.panels,
+          [targetPanel]: {
+            ...prevState.panels[targetPanel],
+            [targetName]: targetValue,
+          },
+        },
       };
     });
   }
+  //   console.log(state.panels.envelope);
 
   Object.entries(PanelsObject).forEach(([key, value]) => {
     const settings = state.panels[key];

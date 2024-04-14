@@ -38,15 +38,13 @@ export default function Panel(props) {
   if (InputsObject) {
     for (const [key, value] of Object.entries(InputsObject)) {
       const Type = components[value.type];
-      // console.log(props);
-      if (props.settings) {
-        value.setting = props.settings[key];
-      }
+      // console.log(props.settings);
+
       inputs.push(
         <Type
           handleChange={props.handleChange}
           label={key}
-          setting={value.setting}
+          settings={props.settings}
           panel={props.name}
         />
       );

@@ -1,7 +1,7 @@
 {
   "panels": {
     "controls": {
-      "gain": 50,
+      "gain": 0,
       "filter": 0,
       "on": true
     },
