@@ -1,14 +1,18 @@
 {
-    "panels": {
-        "knobs": [
-            "gain"
-        ],
-        "envelope": [
-            "attack",
-                        "decay",
-                        "sustain",
-
-            "release"
-        ]
-    }
+  "panels": {
+    "misc": {
+      "columns": 1,
+      "inputs": {
+        "gain": { "type": "Knob" },
+        "filter": { "type": "Knob" }
+      }
+    },
+    "envelope": true,
+    "pitch": true,
+    "mod": true
+  },
+  "buttons": {
+    "octave": true
+  },
+  "instruments": ["keyboard"]
 }
