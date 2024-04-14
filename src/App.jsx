@@ -7,13 +7,11 @@ const components = {
 };
 
 export default function App() {
-  const Type = components[basic.panels.misc.inputs.gain.type];
-  return (
-    <>
-      <Panel
-        names={basic.panels.misc.inputs}
-        columns={basic.panels.misc.columns}
-      />
-    </>
-  );
+  let PanelsObject = basic.panels;
+  let i = 0;
+  let panels = [];
+  Object.entries(PanelsObject).forEach(([key, value]) => {
+    panels.push(<Panel name={key} contents={value} />);
+  });
+  return <>{panels}</>;
 }

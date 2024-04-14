@@ -1,15 +1,15 @@
 {
   "panels": {
-    "misc": {
+    "pitchMod": true,
+    "controls": {
       "columns": 1,
       "inputs": {
         "gain": { "type": "Knob" },
-        "filter": { "type": "Knob" }
+        "filter": { "type": "Knob" },
+        "on": { "type": "Button" }
       }
     },
-    "envelope": true,
-    "pitch": true,
-    "mod": true
+    "envelope": true
   },
   "buttons": {
     "octave": true
