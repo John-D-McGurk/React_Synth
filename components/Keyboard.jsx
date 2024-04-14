@@ -7,13 +7,31 @@ export default function Keyboard(props) {
   props.octaves.forEach((octave) => {
     keyboard = keyboard.concat(
       notes.map((note) => {
+        const naturalNote = note + octave;
+        const sharpNote = note + "#" + octave;
         return (
-          <div data-note={octave + note} className="keyboard--white-note">
+          <div
+            data-note={note}
+            data-octave={octave}
+            className="keyboard--white-note"
+            onMouseDown={props.notePressed}
+            onMouseUp={props.noteReleased}
+            onMouseOver={props.notePressed}
+            onMouseLeave={props.noteReleased}
+          >
+            <span className="keyboard--white-note-label">{naturalNote} </span>
             {note !== "E" && note != "B" && (
               <div
-                data-note={octave + note + "#"}
+                data-note={note + "#"}
+                data-octave={octave}
                 className="keyboard--black-note"
-              ></div>
+                onMouseDown={props.notePressed}
+                onMouseUp={props.noteReleased}
+                onMouseOver={props.notePressed}
+                onMouseLeave={props.noteReleased}
+              >
+                <span className="keyboard--black-note-label">{sharpNote}</span>
+              </div>
             )}
           </div>
         );

@@ -14,6 +14,7 @@
     position: absolute;
     border: 5px solid black;
     height: 200px;
+    font-size: 0.7rem;
 }
 
 .keyboard--white-note {
@@ -23,6 +24,20 @@
     background: white;
     border-right: 1px solid black;
     position: relative;
+}
+.keyboard--white-note-label {
+        color: #000;
+
+}
+
+.keyboard--white-note-label,
+.keyboard--black-note-label {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    display: none;
 }
 
 .keyboard--black-note {
@@ -34,3 +49,4 @@
     background: #000;
     z-index: 1;
 }
+
