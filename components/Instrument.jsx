@@ -61,7 +61,7 @@ export default function Instrument(props) {
           ...prevState.panels,
           [targetPanel]: {
             ...prevState.panels[targetPanel],
-            [targetName]: targetValue,
+            [targetName]: Number(targetValue),
           },
         },
       };

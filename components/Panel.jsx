@@ -13,10 +13,10 @@ export default function Panel(props) {
   let InputsObject;
   if (props.name === "envelope" && props.contents) {
     InputsObject = {
-      attack: { type: "Knob" },
-      decay: { type: "Knob" },
-      sustain: { type: "Knob" },
-      release: { type: "Knob" },
+      attack: { type: "Knob", max: 5, step: 0.01 },
+      decay: { type: "Knob", max: 5, step: 0.01 },
+      sustain: { type: "Knob", max: 1, step: 0.01 },
+      release: { type: "Knob", max: 5, step: 0.01 },
     };
   } else if (props.name === "pitchMod" && props.contents) {
     InputsObject = {
@@ -38,7 +38,6 @@ export default function Panel(props) {
   if (InputsObject) {
     for (const [key, value] of Object.entries(InputsObject)) {
       const Type = components[value.type];
-      // console.log(props.settings);
 
       inputs.push(
         <Type
@@ -46,6 +45,8 @@ export default function Panel(props) {
           label={key}
           settings={props.settings}
           panel={props.name}
+          max={value.max}
+          step={value.step}
         />
       );
       i++;

@@ -6,11 +6,10 @@
       "on": true
     },
     "envelope": {
-      "attack": 20,
-      "decay": 20,
-      "sustain": 60,
-      "release": 20
+      "attack": 0.2,
+      "decay": 0.2,
+      "sustain": 0.6,
+      "release": 0.5
     }
-  },
-  "octaves": [3, 4]
+  }
 }

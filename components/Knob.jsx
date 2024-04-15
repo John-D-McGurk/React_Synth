@@ -10,7 +10,8 @@ export default function Knob(props) {
         name={props.label}
         type="range"
         min={0}
-        max={100}
+        max={props.max}
+        step={props.step}
         value={value}
         onChange={props.handleChange}
         className="slider"

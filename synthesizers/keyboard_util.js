@@ -1,7 +1,6 @@
 import { addOsc, removeOsc } from "../synthesizers/basic/basic";
 
 export function notePressed(e, state, setState) {
-  console.log(state);
   e.stopPropagation();
   if (e.buttons & 1) {
     const dataset = e.target.dataset,
@@ -14,7 +13,7 @@ export function notePressed(e, state, setState) {
         parentNote = parent.dataset.note,
         parentOctave = parent.dataset.octave;
       if (state.keys[parentNote][parentOctave].active) {
-        innerRelease(parent.dataset);
+        innerRelease(parent.dataset, state, setState);
       }
     }
     if (!state.keys[note][octave].active && octave) {
@@ -35,13 +34,13 @@ export function notePressed(e, state, setState) {
         };
       });
 
-      addOsc(dataset, state.keys[note][octave].freq);
+      addOsc(dataset, state);
     }
   }
 }
 
-function innerRelease(dataset, setState) {
-  removeOsc(dataset);
+function innerRelease(dataset, state, setState) {
+  removeOsc(dataset, state);
   setState((prevState) => {
     return {
       ...prevState,
@@ -66,6 +65,6 @@ export function noteReleased(e, state, setState) {
   // console.log(oscList);
   if (state.keys[note][octave].active) {
     //   console.log(oscList[octave][note]);
-    innerRelease(dataset, setState);
+    innerRelease(dataset, state, setState);
   }
 }

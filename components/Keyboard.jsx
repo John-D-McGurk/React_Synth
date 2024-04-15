@@ -5,7 +5,6 @@ export default function Keyboard(props) {
   const notes = ["C", "D", "E", "F", "G", "A", "B"],
     state = props.state,
     setState = props.setState;
-  console.log(state);
 
   props.octaves.forEach((octave) => {
     keyboard = keyboard.concat(
@@ -28,10 +27,10 @@ export default function Keyboard(props) {
                 data-note={note + "#"}
                 data-octave={octave}
                 className="keyboard--black-note"
-                onMouseDown={props.notePressed}
-                onMouseUp={props.noteReleased}
-                onMouseOver={props.notePressed}
-                onMouseLeave={props.noteReleased}
+                onMouseDown={(e) => props.notePressed(e, state, setState)}
+                onMouseUp={(e) => props.noteReleased(e, state, setState)}
+                onMouseOver={(e) => props.notePressed(e, state, setState)}
+                onMouseLeave={(e) => props.noteReleased(e, state, setState)}
                 data-pressed={props.state.keys[sharpNote][octave].active}
               >
                 <span className="keyboard--black-note-label">{sharpNote}</span>
