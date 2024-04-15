@@ -1,6 +1,6 @@
 import { addOsc, removeOsc } from "../synthesizers/basic/basic";
 
-export function notePressed(e, state, setState) {
+export function notePressed(e, state) {
   e.stopPropagation();
   if (e.buttons & 1) {
     const dataset = e.target.dataset,
@@ -12,50 +12,51 @@ export function notePressed(e, state, setState) {
       const parent = e.target.closest(".keyboard--white-note"),
         parentNote = parent.dataset.note,
         parentOctave = parent.dataset.octave;
-      if (state.keys[parentNote][parentOctave].active) {
-        innerRelease(parent.dataset, state, setState);
+      if (parent.dataset.pressed) {
+        innerRelease(parent.dataset, state);
       }
     }
     if (!state.keys[note][octave].active && octave) {
-      // dataset.pressed = true;
-      setState((prevState) => {
-        return {
-          ...prevState,
-          keys: {
-            ...prevState.keys,
-            [note]: {
-              ...prevState.keys[note],
-              [octave]: {
-                ...prevState.keys[note][octave],
-                active: true,
-              },
-            },
-          },
-        };
-      });
-
-      addOsc(dataset, state);
+      dataset.pressed = true;
+      //   setState((prevState) => {
+      //     return {
+      //       ...prevState,
+      //       keys: {
+      //         ...prevState.keys,
+      //         [note]: {
+      //           ...prevState.keys[note],
+      //           [octave]: {
+      //             ...prevState.keys[note][octave],
+      //             active: true,
+      //           },
+      //         },
+      //       },
+      // };
     }
+
+    addOsc(dataset, state);
   }
 }
 
-function innerRelease(dataset, state, setState) {
+function innerRelease(dataset, state) {
   removeOsc(dataset, state);
-  setState((prevState) => {
-    return {
-      ...prevState,
-      keys: {
-        ...prevState.keys,
-        [dataset.note]: {
-          ...prevState.keys[dataset.note],
-          [dataset.octave]: {
-            ...prevState.keys[dataset.note][dataset.octave],
-            active: false,
-          },
-        },
-      },
-    };
-  });
+  delete dataset["pressed"];
+
+  //   setState((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       keys: {
+  //         ...prevState.keys,
+  //         [dataset.note]: {
+  //           ...prevState.keys[dataset.note],
+  //           [dataset.octave]: {
+  //             ...prevState.keys[dataset.note][dataset.octave],
+  //             active: false,
+  //           },
+  //         },
+  //       },
+  //     };
+  //   });
 }
 
 export function noteReleased(e, state, setState) {
@@ -63,8 +64,8 @@ export function noteReleased(e, state, setState) {
     note = dataset.note,
     octave = dataset.octave;
   // console.log(oscList);
-  if (state.keys[note][octave].active) {
+  if (dataset.pressed) {
     //   console.log(oscList[octave][note]);
-    innerRelease(dataset, state, setState);
+    innerRelease(dataset, state);
   }
 }
