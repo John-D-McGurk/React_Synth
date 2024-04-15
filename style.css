@@ -25,6 +25,11 @@
     border-right: 1px solid black;
     position: relative;
 }
+
+.keyboard--white-note[data-pressed="true"] {
+    background-color: #DDD;
+}
+
 .keyboard--white-note-label {
         color: #000;
 
@@ -50,3 +55,6 @@
     z-index: 1;
 }
 
+.keyboard--black-note[data-pressed="true"] {
+    background-color: #333;
+}

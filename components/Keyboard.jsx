@@ -2,24 +2,27 @@ import React from "react";
 
 export default function Keyboard(props) {
   let keyboard = [];
-  let notes = ["C", "D", "E", "F", "G", "A", "B"];
+  const notes = ["C", "D", "E", "F", "G", "A", "B"],
+    state = props.state,
+    setState = props.setState;
+  console.log(state);
 
   props.octaves.forEach((octave) => {
     keyboard = keyboard.concat(
       notes.map((note) => {
-        const naturalNote = note + octave;
-        const sharpNote = note + "#" + octave;
+        const sharpNote = note + "#";
         return (
           <div
             data-note={note}
             data-octave={octave}
             className="keyboard--white-note"
-            onMouseDown={props.notePressed}
-            onMouseUp={props.noteReleased}
-            onMouseOver={props.notePressed}
-            onMouseLeave={props.noteReleased}
+            onMouseDown={(e) => props.notePressed(e, state, setState)}
+            onMouseUp={(e) => props.noteReleased(e, state, setState)}
+            onMouseOver={(e) => props.notePressed(e, state, setState)}
+            onMouseLeave={(e) => props.noteReleased(e, state, setState)}
+            data-pressed={props.state.keys[note][octave].active}
           >
-            <span className="keyboard--white-note-label">{naturalNote} </span>
+            <span className="keyboard--white-note-label">{note + octave} </span>
             {note !== "E" && note != "B" && (
               <div
                 data-note={note + "#"}
@@ -29,6 +32,7 @@ export default function Keyboard(props) {
                 onMouseUp={props.noteReleased}
                 onMouseOver={props.notePressed}
                 onMouseLeave={props.noteReleased}
+                data-pressed={props.state.keys[sharpNote][octave].active}
               >
                 <span className="keyboard--black-note-label">{sharpNote}</span>
               </div>
