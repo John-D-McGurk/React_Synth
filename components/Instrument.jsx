@@ -38,6 +38,7 @@ function addNoteFreqList(setState) {
 
 export default function Instrument(props) {
   let PanelsObject = props.contents.panels;
+  console.log(PanelsObject);
   let i = 0;
   let panels = [];
   const [state, setState] = useState(data);
@@ -61,7 +62,7 @@ export default function Instrument(props) {
           ...prevState.panels,
           [targetPanel]: {
             ...prevState.panels[targetPanel],
-            [targetName]: Number(targetValue),
+            [targetName]: targetValue,
           },
         },
       };

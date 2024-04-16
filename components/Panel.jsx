@@ -1,13 +1,18 @@
 import React from "react";
 import Knob from "./Knob";
 import Button from "./Button";
+import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
 
 const components = {
   Knob: Knob,
   Button: Button,
+  Checkbox: Checkbox,
+  Dropdown: Dropdown,
 };
 
 export default function Panel(props) {
+  // console.log(props);
   let inputs = [];
   let i = 0;
   let InputsObject;
@@ -33,6 +38,7 @@ export default function Panel(props) {
   } else {
     InputsObject = props.contents.inputs;
     // for const [key, value] of Object.entries(InputsObject)
+    console.log(props.contents.inputs);
   }
 
   if (InputsObject) {
@@ -47,6 +53,7 @@ export default function Panel(props) {
           panel={props.name}
           max={value.max}
           step={value.step}
+          contents={value.contents}
         />
       );
       i++;

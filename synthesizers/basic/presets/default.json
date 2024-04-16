@@ -1,7 +1,7 @@
 {
   "panels": {
     "controls": {
-      "gain": 75,
+      "gain": 20,
       "filter": 0,
       "on": true
     },
@@ -10,6 +10,10 @@
       "decay": 0.2,
       "sustain": 0.6,
       "release": 0.5
+    },
+    "filter": {
+      "frequency": 100,
+      "Q": 0.5
     }
   }
 }

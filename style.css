@@ -42,7 +42,10 @@
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
-    display: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .keyboard--black-note {
