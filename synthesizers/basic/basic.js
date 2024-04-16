@@ -46,11 +46,10 @@ class Osc {
     let currentGain = this.envGain.gain.value;
     this.envGain.gain.cancelScheduledValues(now);
     this.envGain.gain.setValueAtTime(currentGain, now);
-
     this.envGain.gain.setTargetAtTime(
       0,
       now,
-      this.envelope.release + this.easing
+      this.envelope.release / 10 + this.easing
     );
     setTimeout(() => {
       this.osc.disconnect();
@@ -74,7 +73,7 @@ export function addOsc(dataset, state) {
   );
 }
 
-export function removeOsc(dataset, state) {
+export function removeOsc(dataset) {
   const octave = dataset.octave,
     note = dataset.note;
   if (oscList[octave][note]) {

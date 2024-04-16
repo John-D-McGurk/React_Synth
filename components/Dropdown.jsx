@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Button(props) {
-  console.log(props);
   const options = props.contents.map((option) => {
     return <option value={option}>{option}</option>;
   });

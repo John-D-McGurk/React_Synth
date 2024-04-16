@@ -10,7 +10,7 @@ export function notePressed(e, state) {
       const parent = e.target.closest(".keyboard--white-note");
 
       if (parent.dataset.pressed) {
-        innerRelease(parent.dataset, state);
+        innerRelease(parent.dataset);
       }
     }
 
@@ -29,6 +29,6 @@ export function noteReleased(e, state, setState) {
     note = dataset.note,
     octave = dataset.octave;
   if (dataset.pressed) {
-    innerRelease(dataset, state);
+    innerRelease(dataset);
   }
 }

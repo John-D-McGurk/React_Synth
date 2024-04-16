@@ -38,7 +38,6 @@ export default function Panel(props) {
   } else {
     InputsObject = props.contents.inputs;
     // for const [key, value] of Object.entries(InputsObject)
-    console.log(props.contents.inputs);
   }
 
   if (InputsObject) {

@@ -38,7 +38,6 @@ function addNoteFreqList(setState) {
 
 export default function Instrument(props) {
   let PanelsObject = props.contents.panels;
-  console.log(PanelsObject);
   let i = 0;
   let panels = [];
   const [state, setState] = useState(data);
@@ -52,9 +51,14 @@ export default function Instrument(props) {
   }
 
   function handleChange(e) {
-    const targetValue = e.target.value,
-      targetName = e.target.name,
+    let targetValue = e.target.value;
+    const targetName = e.target.name,
       targetPanel = e.target.dataset.panel;
+
+    if (!isNaN(targetValue)) {
+      targetValue = Number(targetValue);
+    }
+
     setState((prevState) => {
       return {
         ...prevState,
