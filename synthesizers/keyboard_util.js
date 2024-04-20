@@ -1,7 +1,9 @@
 import { addOsc, removeOsc } from "../synthesizers/basic/basic";
 
-export function notePressed(e, state) {
-  e.stopPropagation();
+export function notePressed(e, state, isMouse) {
+if (isMouse) {
+    e.stopPropagation();
+}
   if (e.buttons & 1) {
     const dataset = e.target.dataset;
     // when dragged from natural to sharp notes parent must be deactivated
@@ -16,18 +18,25 @@ export function notePressed(e, state) {
 
     dataset.pressed = true;
     addOsc(dataset, state);
+  } else if (!isMouse) {
+    e.dataset.pressed = true;
+    addOsc(e.dataset, state)
   }
 }
 
-function innerRelease(dataset, state) {
-  removeOsc(dataset, state);
+function innerRelease(dataset) {
+  removeOsc(dataset);
   delete dataset["pressed"];
 }
 
-export function noteReleased(e, state, setState) {
-  const dataset = e.target.dataset,
-    note = dataset.note,
-    octave = dataset.octave;
+export function noteReleased(e, isMouse) {
+  let dataset;
+  if(isMouse) {
+      dataset = e.target.dataset;
+  } else {
+    dataset = e.dataset
+  }
+
   if (dataset.pressed) {
     innerRelease(dataset);
   }

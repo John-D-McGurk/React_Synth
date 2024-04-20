@@ -71,6 +71,7 @@ export function addOsc(dataset, state) {
     envelope,
     mainGainNode
   );
+  console.log(oscList[dataset.octave][dataset.note])
 }
 
 export function removeOsc(dataset) {
