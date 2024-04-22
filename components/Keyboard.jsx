@@ -44,37 +44,30 @@ p: {note:`D#`, octave:startOctave + 1},
     keyRefs = useRef([]);
 
     useEffect(() => {
-      function handleKeyDown(e) {
+      function getKeyDOM(e) {
         if (e.key in keyMap) {
           const keyPressed = keyMap[e.key],
           keyIdx = noteIndex[keyPressed.note],
           fullIdx = keyIdx + keyPressed.octave * 12,
-          pressedKey = keyRefs.current[fullIdx],
-          keyItem = {
-            target: pressedKey}
-
+          pressedKey = keyRefs.current[fullIdx];
+          return pressedKey;
+      }
+    }
+      function handleKeyDown(e) {
+        const pressedKey = getKeyDOM(e);
           if (!pressedKey.dataset.pressed){   
           props.notePressed(pressedKey, state, false)
 
-          pressedKey.dispatchEvent(new MouseEvent('onMouseDown'));
-          document.addEventListener('keyup', handleKeyUp);          
-//glitch where not all keys are always released
-//think cause is when key is held starts multiple oscs
-//set up check for 
-          function handleKeyUp () {
-            props.noteReleased(pressedKey, false)
-          }}
-
-
-
-
-
-          // props.notePressed(keyPressed, state, false)
-
-          console.log(pressedKey)
+          e.target.addEventListener('keyup', handleKeyUp);
+          }          
+          function handleKeyUp (e) {
+            const pressedKey = getKeyDOM(e);
+            if(pressedKey.dataset.pressed) {
+              props.noteReleased(pressedKey, false);
+            }
 
         }
-      }    
+      }
       document.addEventListener('keydown', handleKeyDown);
 
 

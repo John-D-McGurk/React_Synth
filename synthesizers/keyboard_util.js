@@ -31,6 +31,7 @@ function innerRelease(dataset) {
 
 export function noteReleased(e, isMouse) {
   let dataset;
+  // console.log(e);
   if(isMouse) {
       dataset = e.target.dataset;
   } else {
