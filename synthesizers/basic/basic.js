@@ -5,13 +5,24 @@ const oscList = [];
 for (let i = 0; i < 9; i++) {
   oscList[i] = {};
 }
-let mainGainNode;
-mainGainNode = ctx.createGain();
+const mainGainNode = ctx.createGain();
 mainGainNode.connect(ctx.destination);
+
 
 let customWaveform = null;
 let sineTerms = null;
 let cosineTerms = null;
+
+class Filter {
+  constructor(ctx, state, out) {
+    this.ctx = ctx;
+    this.filter = ctx.createBiquadFilter();
+    this.filter.type = state.panels.filter.type;
+    this.filter.Q = state.panels.filter.Q;
+    this.filter.freq = state.panels.filter.frequency;
+    this.filter.connect(out);
+  }
+}
 
 class Osc {
   constructor(ctx, type, freq, envelope, out) {
@@ -41,6 +52,12 @@ class Osc {
       now + this.envelope.attack + this.envelope.decay + this.easing
     );
   }
+
+  changeOut(newOut) {
+    this.envGain.disconnect;
+    this.envGain.connect(newOut);
+  }
+
   stop() {
     let now = this.ctx.currentTime;
     let currentGain = this.envGain.gain.value;
@@ -56,6 +73,8 @@ class Osc {
     }, 10000);
   }
 }
+
+
 
 export function audioSetup(state) {
   mainGainNode.gain.value = state.panels.controls.gain / 100;

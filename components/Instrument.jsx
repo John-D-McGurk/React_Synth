@@ -40,6 +40,7 @@ export default function Instrument(props) {
   let PanelsObject = props.contents.panels;
   let i = 0;
   let panels = [];
+  console.log(data)
   const [state, setState] = useState(data);
 
   if (props.contents.panels.pitchMod && !state.panels.pitchMod) {

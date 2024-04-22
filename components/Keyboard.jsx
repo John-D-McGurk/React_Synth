@@ -39,6 +39,7 @@ export default function Keyboard(props) {
     },
     state = props.state,
     keyRefs = useRef([]);
+    console.log(state)
 
   useEffect(() => {
     function getKeyDOM(e) {
@@ -60,7 +61,7 @@ export default function Keyboard(props) {
         }
       }
     }
-
+// Bug: if another key that isn't mapped is pressed a time of release function won't fire
     function handleKeyUp(e) {
       if (e.key in keyMap) {
         const pressedKey = getKeyDOM(e);
@@ -73,9 +74,8 @@ export default function Keyboard(props) {
     document.addEventListener('keydown', handleKeyDown);
 
     return function cleanup() {
-      console.log('cleanup')
-      document.removeEventListener('keydown', handleKeyDown)
-      document.removeEventListener('keyup', handleKeyUp)
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
     }
 
   }, [])
@@ -84,7 +84,7 @@ export default function Keyboard(props) {
 
   octaveList.forEach(octave => {
     keyboard = keyboard.concat(
-      notes.map((note, keyIdx) => {
+      notes.map((note) => {
         const sharpNote = note + "#",
           noteIdx = 12 * octave /*(octave - startOctave)*/ + noteIndex[note];
         return (
@@ -121,9 +121,4 @@ export default function Keyboard(props) {
     );
   })
   return <div id="keyboard">{keyboard}</div>;
-}
-
-
-function Key(props) {
-
 }

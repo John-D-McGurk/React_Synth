@@ -13,7 +13,9 @@
     },
     "filter": {
       "frequency": 100,
-      "Q": 0.5
+      "Q": 0.5,
+      "on": true,
+      "type": "highpass"
     }
   }
 }
