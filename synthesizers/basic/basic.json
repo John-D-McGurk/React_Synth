@@ -13,6 +13,8 @@
         "on": {"type": "Checkbox"},
         "frequency": { "type": "Knob", "max": 22000 },
         "Q": { "type": "Knob", "max": 1, "step": 0.01 },
+        "gain": {"type": "Knob", "max": 1, "step": 0.01},
+        "wet": {"type": "Knob"},
         "type": {
           "type": "Dropdown",
           "contents": [

@@ -6,7 +6,7 @@ import noteFreqList from "../noteFreqs.json";
 
 import { notePressed, noteReleased } from "../synthesizers/keyboard_util.js";
 
-import { audioSetup, addOsc, removeOsc } from "../synthesizers/basic/basic";
+import { audioSetup, addOsc, removeOsc, addFilter } from "../synthesizers/basic/basic";
 
 function addPitchMod(setState) {
   setState((prevState) => {
@@ -16,6 +16,7 @@ function addPitchMod(setState) {
     };
   });
 }
+
 
 function addNoteFreqList(setState) {
   const keys = {};
@@ -40,8 +41,10 @@ export default function Instrument(props) {
   let PanelsObject = props.contents.panels;
   let i = 0;
   let panels = [];
-  console.log(data)
   const [state, setState] = useState(data);
+
+  addFilter(state)
+
 
   if (props.contents.panels.pitchMod && !state.panels.pitchMod) {
     addPitchMod(setState);

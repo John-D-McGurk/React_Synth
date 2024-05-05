@@ -39,7 +39,6 @@ export default function Keyboard(props) {
     },
     state = props.state,
     keyRefs = useRef([]);
-    console.log(state)
 
   useEffect(() => {
     function getKeyDOM(e) {

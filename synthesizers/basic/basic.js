@@ -8,24 +8,34 @@ for (let i = 0; i < 9; i++) {
 const mainGainNode = ctx.createGain();
 mainGainNode.connect(ctx.destination);
 
+let filter;
 
 let customWaveform = null;
 let sineTerms = null;
 let cosineTerms = null;
 
 class Filter {
-  constructor(ctx, state, out) {
+  constructor(ctx, state, out1, out2) {
     this.ctx = ctx;
     this.filter = ctx.createBiquadFilter();
-    this.filter.type = state.panels.filter.type;
-    this.filter.Q = state.panels.filter.Q;
-    this.filter.freq = state.panels.filter.frequency;
-    this.filter.connect(out);
+    // this.filter.type = state.panels.filter.type;
+    // this.filter.Q = state.panels.filter.Q;
+    // this.filter.freq = state.panels.filter.frequency;
+    // this.filter.gain = state.panels.filter.gain;
+
+    const wetAmount = state.panels.filter.wet / 100;
+    this.filter.wet = ctx.createGain();
+    // this.filter.wet.gain = wetAmount
+    this.filter.wet.connect(out1);
+    this.filter.dry = ctx.createGain()
+    // this.filter.dry.gain = 1 - wetAmount;
+    this.filter.dry.connect(out1);
+    this.filter.connect(this.filter.wet);
   }
 }
 
 class Osc {
-  constructor(ctx, type, freq, envelope, out) {
+  constructor(ctx, type, freq, envelope, out1, out2) {
     this.ctx = ctx;
     this.envelope = envelope;
     this.osc = ctx.createOscillator();
@@ -34,7 +44,9 @@ class Osc {
     this.envGain = ctx.createGain();
     this.envGain.gain.value = 0;
     this.osc.connect(this.envGain);
-    this.envGain.connect(out);
+    // this.envGain.connect(out1);
+    console.log(out2)
+    this.envGain.connect(out1);
     this.easing = 0.005;
     this.osc.start();
     this.start();
@@ -53,10 +65,6 @@ class Osc {
     );
   }
 
-  changeOut(newOut) {
-    this.envGain.disconnect;
-    this.envGain.connect(newOut);
-  }
 
   stop() {
     let now = this.ctx.currentTime;
@@ -80,6 +88,12 @@ export function audioSetup(state) {
   mainGainNode.gain.value = state.panels.controls.gain / 100;
 }
 
+export function addFilter(state) {
+  filter = new Filter(ctx, state, mainGainNode);
+  console.log(filter)
+}
+
+
 export function addOsc(dataset, state) {
   const freq = state.keys[dataset.note][dataset.octave].freq,
     envelope = state.panels.envelope;
@@ -88,7 +102,8 @@ export function addOsc(dataset, state) {
     "sine",
     freq,
     envelope,
-    mainGainNode
+    filter.filter,
+    filter.dry
   );
   // console.log(oscList[dataset.octave][dataset.note])
 }
