@@ -52,6 +52,8 @@ export default function Keyboard(props) {
       if (e.key.toLowerCase() in keyMap) {
         const pressedKey = getKeyDOM(e);
         if (!pressedKey.dataset.pressed) {
+          console.log(props.state);
+
           props.notePressed(pressedKey, state, false);
 
           e.target.addEventListener("keyup", handleKeyUp);
@@ -74,7 +76,7 @@ export default function Keyboard(props) {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  }, [state]);
 
   const octaveList = [0, 1, 2, 3, 4, 5, 6, 7];
 

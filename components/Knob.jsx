@@ -9,7 +9,7 @@ export default function Knob(props) {
         data-panel={props.panel}
         name={props.label}
         type="range"
-        min={0}
+        min={props.min}
         max={props.max}
         step={props.step}
         value={value}

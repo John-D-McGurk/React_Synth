@@ -37,6 +37,7 @@ export default function Panel(props) {
     };
   } else {
     InputsObject = props.contents.inputs;
+    console.log(InputsObject);
     // for const [key, value] of Object.entries(InputsObject)
   }
 
@@ -50,6 +51,7 @@ export default function Panel(props) {
           label={key}
           settings={props.settings}
           panel={props.name}
+          min={value.min}
           max={value.max}
           step={value.step}
           contents={value.contents}
