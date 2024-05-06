@@ -59,6 +59,11 @@ export default function Panel(props) {
       );
       i++;
     }
-    return <div className="panel">{inputs}</div>;
+    const panelId = `panel--${props.name}`;
+    return (
+      <div className="panel" id={panelId}>
+        {inputs}
+      </div>
+    );
   }
 }

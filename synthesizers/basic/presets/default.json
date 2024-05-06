@@ -1,9 +1,7 @@
 {
   "panels": {
     "controls": {
-      "gain": 20,
-      "filter": 0,
-      "on": true
+      "gain": 20
     },
     "envelope": {
       "attack": 0.2,
@@ -12,11 +10,11 @@
       "release": 0.5
     },
     "filter": {
-      "frequency": 100,
+      "frequency": 0,
       "Q": 0.5,
       "on": true,
       "gain": 0,
-      "wet" : 100,
+      "wet": 100,
       "type": "highpass"
     }
   }

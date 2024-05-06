@@ -84,6 +84,7 @@ export default function Instrument(props) {
   audioSetup(state);
 
   Object.entries(PanelsObject).forEach(([key, value]) => {
+    console.log(key);
     panels.push(
       <Panel
         handleChange={handleChange}
@@ -94,8 +95,8 @@ export default function Instrument(props) {
     );
   });
   return (
-    <>
-      {panels}
+    <div id="instrument">
+      <div id="panels--container">{panels}</div>
       <Keyboard
         octaves={props.contents.inputs.octaves}
         notePressed={notePressed}
@@ -103,6 +104,6 @@ export default function Instrument(props) {
         state={state}
         setState={setState}
       />
-    </>
+    </div>
   );
 }

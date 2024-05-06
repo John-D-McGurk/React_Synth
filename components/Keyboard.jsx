@@ -118,5 +118,9 @@ export default function Keyboard(props) {
       })
     );
   });
-  return <div id="keyboard">{keyboard}</div>;
+  return (
+    <div id="keyboard--container">
+      <div id="keyboard--keys">{keyboard}</div>
+    </div>
+  );
 }

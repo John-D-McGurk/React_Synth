@@ -4,8 +4,7 @@
     "controls": {
       "columns": 1,
       "inputs": {
-        "gain": { "type": "Knob" },
-        "on": { "type": "Button" }
+        "gain": { "type": "Knob" }
       }
     },
     "filter": {

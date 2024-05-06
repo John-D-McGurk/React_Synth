@@ -1,63 +1,138 @@
+#root {
+  --key-width: 45px;
+  --keyboard-height: 175px;
+
+  --pitchMod-box: 200px;
+
+  --brown: #4c2f11;
+  --yellow: #dc9e08;
+  --orange: #cd5604;
+  --off-white: #d6d9ad;
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#instrument {
+  background: var(--orange);
+  border-radius: 25px;
+  overflow: hidden;
+  border-top: 15px solid var(--brown);
+  position: relative;
+}
+
+#panels--container {
+  box-shadow: inset 0px -10px 10px 10px #00000044;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .panel {
-    display: flex;
-    margin: 10px;
+  display: flex;
+  margin: 10px;
+  background: var(--yellow);
+  border-radius: 10px 10px 0 0;
+}
+
+#panel--pitchMod {
+  position: absolute;
+  background: none;
+  bottom: 0;
+  left: 0;
+  height: var(--keyboard-height);
+  width: var(--pitchMod-box);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .knob,
 .button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#keyboard {
-    position: absolute;
-    border: 5px solid black;
-    height: 200px;
-    font-size: 0.7rem;
+#keyboard--container {
+  overflow: hidden;
+  height: var(--keyboard-height);
+  width: calc(21 * (var(--key-width)) - 1px);
+  position: relative;
+  margin: 0 50px 0 var(--pitchMod-box);
+}
+
+#keyboard--keys {
+  display: flex;
+  position: absolute;
+  height: var(--keyboard-height);
+  font-size: 0.7rem;
 }
 
 .keyboard--white-note {
-    float: left;
-    width: 45px;
-    height: 100%;
-    background: white;
-    border-right: 1px solid black;
-    position: relative;
+  float: left;
+  width: var(--key-width);
+  height: 100%;
+  background: var(--off-white);
+  border-right: 1px solid black;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 7px 6px 6px 0px #00000040 inset,
+    -7px -8px 11.6px 0px #00000040 inset,
+    0px calc(var(--keyboard-height) * 0.2) 30px 0 #a8ac73de inset;
+}
+
+.keyboard--white-note::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  height: 70%;
+  width: 60%;
+  background-color: #f3f4e4;
 }
 
 .keyboard--white-note[data-pressed="true"] {
-    background-color: #DDD;
+  background-color: #fcfede;
 }
 
 .keyboard--white-note-label {
-        color: #000;
-
+  color: #000;
 }
 
 .keyboard--white-note-label,
 .keyboard--black-note-label {
-    position: absolute;
-    bottom: 0.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .keyboard--black-note {
-    position: absolute;
-    height: 65%;
-    width: 55%;
-    left: 100%;
-    transform: translateX(-50%);
-    background: #000;
-    z-index: 1;
+  position: absolute;
+  height: 62.5%;
+  width: 55%;
+  left: 100%;
+  transform: translateX(-50%);
+  background: var(--brown);
+  z-index: 1;
+  box-shadow: 8px calc(var(--keyboard-height) * 0.625 * 0.8) 22.4px 0px
+      #00000040 inset,
+    -8px 9px 10px 0 #00000040 inset, 1px -15px 8.1px 0px #b18b6385 inset,
+    0px 2px 2px 0 #00000040;
+  border-radius: 0 0 5px 5px;
 }
 
 .keyboard--black-note[data-pressed="true"] {
-    background-color: #333;
+  background-color: #6e461a;
 }
