@@ -24,15 +24,11 @@ class Filter {
     this.filter.Q.value = state.filter.Q;
     this.filter.frequency.value = state.filter.frequency;
     this.filter.gain.value = state.filter.gain;
-    console.log(state.filter);
 
     this.wet = ctx.createGain();
     this.dry = ctx.createGain();
-
     console.log(state.filter);
-
     if (state.filter.on) {
-      console.log("on");
       const wetAmount = state.filter.wet / 100;
       this.wet.gain.value = wetAmount;
       this.dry.gain.value = 1 - wetAmount;
@@ -44,8 +40,6 @@ class Filter {
     this.wet.connect(this.filter);
     this.dry.connect(out1);
     this.filter.connect(out1);
-
-    console.log(this.filter);
   }
 }
 
@@ -106,7 +100,6 @@ export function addFilter(state) {
 export function addOsc(dataset, state) {
   const freq = noteFreqList[dataset.note][dataset.octave],
     envelope = state.envelope;
-  console.log(state);
   oscList[dataset.octave][dataset.note] = new Osc(
     ctx,
     "sine",

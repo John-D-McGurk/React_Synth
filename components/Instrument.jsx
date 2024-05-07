@@ -6,12 +6,7 @@ import noteFreqList from "../noteFreqs.json";
 
 import { notePressed, noteReleased } from "../synthesizers/keyboard_util.js";
 
-import {
-  audioSetup,
-  addOsc,
-  removeOsc,
-  addFilter,
-} from "../synthesizers/basic/basic";
+import { audioSetup, addFilter } from "../synthesizers/basic/basic";
 
 function addPitchMod(setState) {
   setState((prevState) => {
@@ -35,11 +30,15 @@ export default function Instrument(props) {
   }
 
   function handleChange(e) {
-    let targetValue = e.target.value;
+    let targetValue;
+    if (e.target.type === "range") {
+      targetValue = e.target.value;
+    } else if (e.target.type === "checkbox") {
+      targetValue = e.target.checked;
+    }
     let targetName = e.target.name,
       targetPanel = e.target.dataset.panel;
-    console.log(targetValue);
-
+    console.log(state);
     if (!isNaN(targetValue)) {
       targetValue = Number(targetValue);
     }
@@ -47,7 +46,6 @@ export default function Instrument(props) {
     // && if changed while holding key release doesn't always work
     // && Don't go above or below max
     if (targetName === "oct +") {
-      console.log(state);
       targetValue = state.octave.middleOctave + 1;
       targetName = "middleOctave";
       console.log(targetValue);
@@ -55,7 +53,6 @@ export default function Instrument(props) {
       targetValue = state.octave.middleOctave - 1;
       targetName = "middleOctave";
     }
-    console.log(state);
 
     setState((prevState) => {
       return {
