@@ -22,25 +22,6 @@ function addPitchMod(setState) {
   });
 }
 
-function addNoteFreqList(setState) {
-  const keys = {};
-  let notes = noteFreqList;
-  let notesObject = {};
-  Object.entries(notes).forEach((note) => {
-    let map = note[1].map((freq) => {
-      return { freq: freq, active: false };
-    });
-    notesObject[note[0]] = map;
-  });
-
-  setState((prevState) => {
-    return {
-      ...prevState,
-      keys: notesObject,
-    };
-  });
-}
-
 export default function Instrument(props) {
   let PanelsObject = props.contents.panels;
   let i = 0;
@@ -51,10 +32,6 @@ export default function Instrument(props) {
 
   if (props.contents.panels.pitchMod && !state.pitchMod) {
     addPitchMod(setState);
-  }
-
-  if (props.contents.inputs.keyboard && !state.keys) {
-    addNoteFreqList(setState);
   }
 
   function handleChange(e) {
@@ -78,7 +55,7 @@ export default function Instrument(props) {
       targetValue = state.octave.middleOctave - 1;
       targetName = "middleOctave";
     }
-    console.log(targetValue);
+    console.log(state);
 
     setState((prevState) => {
       return {

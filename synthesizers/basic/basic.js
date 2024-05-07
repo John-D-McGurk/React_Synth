@@ -1,5 +1,7 @@
 // import { env } from "../../.eslintrc.cjs";
 
+import noteFreqList from "../../noteFreqs.json";
+
 const ctx = new AudioContext();
 const oscList = [];
 for (let i = 0; i < 9; i++) {
@@ -102,7 +104,7 @@ export function addFilter(state) {
 }
 
 export function addOsc(dataset, state) {
-  const freq = state.keys[dataset.note][dataset.octave].freq,
+  const freq = noteFreqList[dataset.note][dataset.octave],
     envelope = state.envelope;
   console.log(state);
   oscList[dataset.octave][dataset.note] = new Osc(
