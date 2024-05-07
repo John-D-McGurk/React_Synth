@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Button(props) {
-  const value = props.settings.panels[props.panel][props.label];
+  const value = props.settings[props.panel][props.label];
   const options = props.contents.map((option) => {
     return (
       <option selected={option === value} value={option}>

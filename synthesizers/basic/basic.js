@@ -18,20 +18,20 @@ class Filter {
   constructor(ctx, state, out1, out2) {
     this.ctx = ctx;
     this.filter = ctx.createBiquadFilter();
-    this.filter.type = state.panels.filter.type;
-    this.filter.Q.value = state.panels.filter.Q;
-    this.filter.frequency.value = state.panels.filter.frequency;
-    this.filter.gain.value = state.panels.filter.gain;
-    console.log(state.panels.filter);
+    this.filter.type = state.filter.type;
+    this.filter.Q.value = state.filter.Q;
+    this.filter.frequency.value = state.filter.frequency;
+    this.filter.gain.value = state.filter.gain;
+    console.log(state.filter);
 
     this.wet = ctx.createGain();
     this.dry = ctx.createGain();
 
-    console.log(state.panels.filter);
+    console.log(state.filter);
 
-    if (state.panels.filter.on) {
+    if (state.filter.on) {
       console.log("on");
-      const wetAmount = state.panels.filter.wet / 100;
+      const wetAmount = state.filter.wet / 100;
       this.wet.gain.value = wetAmount;
       this.dry.gain.value = 1 - wetAmount;
     } else {
@@ -94,7 +94,7 @@ class Osc {
 }
 
 export function audioSetup(state) {
-  mainGainNode.gain.value = state.panels.controls.gain / 100;
+  mainGainNode.gain.value = state.controls.gain / 100;
 }
 
 export function addFilter(state) {
@@ -103,8 +103,8 @@ export function addFilter(state) {
 
 export function addOsc(dataset, state) {
   const freq = state.keys[dataset.note][dataset.octave].freq,
-    envelope = state.panels.envelope;
-  console.log(state.panels);
+    envelope = state.envelope;
+  console.log(state);
   oscList[dataset.octave][dataset.note] = new Osc(
     ctx,
     "sine",

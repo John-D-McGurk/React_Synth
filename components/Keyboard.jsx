@@ -4,7 +4,7 @@ export default function Keyboard(props) {
   // note index = octave * 12 + note index
   let keyboard = [];
   const notes = ["C", "D", "E", "F", "G", "A", "B"],
-    startOctave = props.state.middleOctave,
+    startOctave = props.state.octave.middleOctave,
     noteIndex = {
       C: 0,
       "C#": 1,
@@ -46,6 +46,8 @@ export default function Keyboard(props) {
         keyIdx = noteIndex[keyPressed.note],
         fullIdx = keyIdx + keyPressed.octave * 12,
         pressedKey = keyRefs.current[fullIdx];
+      console.log(keyPressed);
+
       return pressedKey;
     }
     function handleKeyDown(e) {

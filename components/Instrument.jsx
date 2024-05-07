@@ -17,7 +17,7 @@ function addPitchMod(setState) {
   setState((prevState) => {
     return {
       ...prevState,
-      panels: { ...prevState.panels, pitchMod: { pitch: 50, mod: 0 } },
+      pitchMod: { pitch: 50, mod: 0 },
     };
   });
 }
@@ -49,7 +49,7 @@ export default function Instrument(props) {
 
   addFilter(state);
 
-  if (props.contents.panels.pitchMod && !state.panels.pitchMod) {
+  if (props.contents.panels.pitchMod && !state.pitchMod) {
     addPitchMod(setState);
   }
 
@@ -59,7 +59,7 @@ export default function Instrument(props) {
 
   function handleChange(e) {
     let targetValue = e.target.value;
-    const targetName = e.target.name,
+    let targetName = e.target.name,
       targetPanel = e.target.dataset.panel;
     console.log(targetValue);
 
@@ -68,22 +68,24 @@ export default function Instrument(props) {
     }
     // TODO: make this mess more elegant
     // && if changed while holding key release doesn't always work
+    // && Don't go above or below max
     if (targetName === "oct +") {
       console.log(state);
-      targetValue = state.middleOctave += 1;
+      targetValue = state.octave.middleOctave + 1;
+      targetName = "middleOctave";
+      console.log(targetValue);
     } else if (targetName === "Oct -") {
-      targetValue = state.middleOctave -= 1;
+      targetValue = state.octave.middleOctave - 1;
+      targetName = "middleOctave";
     }
+    console.log(targetValue);
 
     setState((prevState) => {
       return {
         ...prevState,
-        panels: {
-          ...prevState.panels,
-          [targetPanel]: {
-            ...prevState.panels[targetPanel],
-            [targetName]: targetValue,
-          },
+        [targetPanel]: {
+          ...prevState[targetPanel],
+          [targetName]: targetValue,
         },
       };
     });

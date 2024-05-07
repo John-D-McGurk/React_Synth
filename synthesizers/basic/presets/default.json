@@ -1,22 +1,22 @@
 {
-  "panels": {
-    "controls": {
-      "gain": 20
-    },
-    "envelope": {
-      "attack": 0.2,
-      "decay": 0.2,
-      "sustain": 0.6,
-      "release": 0.5
-    },
-    "filter": {
-      "frequency": 0,
-      "Q": 0.5,
-      "on": true,
-      "gain": 0,
-      "wet": 100,
-      "type": "highpass"
-    }
+  "controls": {
+    "gain": 20
   },
-  "middleOctave": 3
+  "envelope": {
+    "attack": 0.2,
+    "decay": 0.2,
+    "sustain": 0.6,
+    "release": 0.5
+  },
+  "filter": {
+    "frequency": 0,
+    "Q": 0.5,
+    "on": true,
+    "gain": 0,
+    "wet": 100,
+    "type": "highpass"
+  },
+  "octave": {
+    "middleOctave": 3
+  }
 }

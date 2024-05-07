@@ -3,8 +3,9 @@ Add MIDI
 -all inputs
 
 Change octave
--make work
 -add keybinds
+-make octaves limited to existing
+-fix key holding bug
 
 Create Knobs
 
@@ -20,3 +21,7 @@ Code Clean
 
 Add Wave Types
 -display
+
+KNOWN BUGS:
+-keys sometimes held when change octave
+-key sometimes held on laptop when press an unmapped key?

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Knob(props) {
-  const value = props.settings.panels[props.panel][props.label];
+  const value = props.settings[props.panel][props.label];
   return (
     <div className="knob">
       <span className="knob--label">{props.label}</span>
