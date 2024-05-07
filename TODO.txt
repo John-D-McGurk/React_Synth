@@ -1,0 +1,22 @@
+Add MIDI
+-velocity
+-all inputs
+
+Change octave
+-make work
+-add keybinds
+
+Create Knobs
+
+Create Pitch & Mod
+
+Create Displays
+-envelope-filter
+-output gain/redline
+
+Code Clean
+-refactor basic and keboard utils
+-research where handleEvent should go
+
+Add Wave Types
+-display

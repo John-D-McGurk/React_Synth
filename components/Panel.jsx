@@ -32,12 +32,11 @@ export default function Panel(props) {
     };
   } else if (props.name === "octave" && props.contents) {
     InputsObject = {
-      octaveUp: { type: "Button" },
-      octaveDown: { type: "Button" },
+      "Oct -": { type: "Button" },
+      "oct +": { type: "Button" },
     };
   } else {
     InputsObject = props.contents.inputs;
-    console.log(InputsObject);
     // for const [key, value] of Object.entries(InputsObject)
   }
 

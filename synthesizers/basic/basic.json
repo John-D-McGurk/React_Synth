@@ -32,7 +32,6 @@
   },
 
   "inputs": {
-    "keyboard": true,
-    "octaves": [3, 4]
+    "keyboard": true
   }
 }

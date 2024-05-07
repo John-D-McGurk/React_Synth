@@ -58,13 +58,21 @@ export default function Instrument(props) {
   }
 
   function handleChange(e) {
-    console.log("handleChange");
     let targetValue = e.target.value;
     const targetName = e.target.name,
       targetPanel = e.target.dataset.panel;
+    console.log(targetValue);
 
     if (!isNaN(targetValue)) {
       targetValue = Number(targetValue);
+    }
+    // TODO: make this mess more elegant
+    // && if changed while holding key release doesn't always work
+    if (targetName === "oct +") {
+      console.log(state);
+      targetValue = state.middleOctave += 1;
+    } else if (targetName === "Oct -") {
+      targetValue = state.middleOctave -= 1;
     }
 
     setState((prevState) => {
@@ -84,7 +92,6 @@ export default function Instrument(props) {
   audioSetup(state);
 
   Object.entries(PanelsObject).forEach(([key, value]) => {
-    console.log(key);
     panels.push(
       <Panel
         handleChange={handleChange}
@@ -98,7 +105,6 @@ export default function Instrument(props) {
     <div id="instrument">
       <div id="panels--container">{panels}</div>
       <Keyboard
-        octaves={props.contents.inputs.octaves}
         notePressed={notePressed}
         noteReleased={noteReleased}
         state={state}

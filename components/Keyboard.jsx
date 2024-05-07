@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { startTransition, useEffect, useRef } from "react";
 
 export default function Keyboard(props) {
   // note index = octave * 12 + note index
   let keyboard = [];
   const notes = ["C", "D", "E", "F", "G", "A", "B"],
-    startOctave = props.octaves[0],
+    startOctave = props.state.middleOctave,
     noteIndex = {
       C: 0,
       "C#": 1,
@@ -52,8 +52,6 @@ export default function Keyboard(props) {
       if (e.key.toLowerCase() in keyMap) {
         const pressedKey = getKeyDOM(e);
         if (!pressedKey.dataset.pressed) {
-          console.log(props.state);
-
           props.notePressed(pressedKey, state, false);
 
           e.target.addEventListener("keyup", handleKeyUp);
@@ -78,7 +76,12 @@ export default function Keyboard(props) {
     };
   }, [state]);
 
-  const octaveList = [0, 1, 2, 3, 4, 5, 6, 7];
+  const octaveList = [0, 1, 2, 3, 4, 5, 6, 7],
+    keyWidth = 45 * 7,
+    transformAmount = -1 * keyWidth * (startOctave - 1),
+    keyTransform = {
+      transform: `translateX(${transformAmount}px)`,
+    };
 
   octaveList.forEach((octave) => {
     keyboard = keyboard.concat(
@@ -120,7 +123,9 @@ export default function Keyboard(props) {
   });
   return (
     <div id="keyboard--container">
-      <div id="keyboard--keys">{keyboard}</div>
+      <div id="keyboard--keys" style={keyTransform}>
+        {keyboard}
+      </div>
     </div>
   );
 }

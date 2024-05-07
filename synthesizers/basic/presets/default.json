@@ -17,5 +17,6 @@
       "wet": 100,
       "type": "highpass"
     }
-  }
+  },
+  "middleOctave": 3
 }
