@@ -20,7 +20,14 @@ Code Clean
 -research where handleEvent should go
 
 Add Wave Types
+-types
 -display
+
+Prop Drilling 
+-manage what parts of state are getting passed to props
+
+Multiple Instruments
+-find out about conditional imports (and clean up if statements into dict)?
 
 KNOWN BUGS:
 -keys sometimes held when change octave

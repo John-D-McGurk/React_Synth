@@ -7,6 +7,7 @@
   --brown: #4c2f11;
   --yellow: #dc9e08;
   --orange: #cd5604;
+  --tan: #c1a26b;
   --off-white: #d6d9ad;
 
   height: 100vh;
@@ -26,7 +27,7 @@
 
 #panels--container {
   box-shadow: inset 0px -10px 10px 10px #00000044;
-  padding: 80px 20px 20px 20px;
+  padding: 150px 20px 20px 20px;
   box-sizing: border-box;
   display: flex;
 }
@@ -69,6 +70,60 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.knob--slider {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  background: #0000;
+
+  --start-angle: 55;
+  --end-angle: 250;
+  --map: calc(
+    (var(--value) - var(--min, 0)) / (var(--max, 100) - var(--min, 100))
+  );
+  --current-angle: calc(
+    (-180 + var(--start-angle) + var(--map) * var(--end-angle)) * 1deg
+  );
+
+  --knob-tip-gradient: radial-gradient(var(--tan), var(--tan));
+  --knob-face-gradient: radial-gradient(#7a4d1e, var(--brown));
+}
+
+.knob--slider:active {
+  cursor: grabbing;
+}
+
+.knob--slider::-webkit-slider-runnable-track,
+.knob--slider::-webkit-slider-thumb {
+  pointer-events: none;
+}
+
+.knob--slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 50%;
+  width: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--current-angle));
+  background-image: var(--knob-tip-gradient), var(--knob-face-gradient);
+  background-size: 2px 10px, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: left 50% top 0, 0 0;
+  border: 2px solid var(--tan);
+  outline: 5px solid var(--brown);
+}
+
+.knob--slider,
+.knob--slider::-webkit-slider-runnable-track,
+.knob--slider::-webkit-slider-thumb {
+  appearance: none;
+}
+
+.knob--slider {
 }
 
 #keyboard--container {
