@@ -4,7 +4,6 @@ export default function Checkbox(props) {
   console.log(props.settings);
   return (
     <div className="checkbox">
-      <span className="checkbox--label">{props.label}</span>
       <input
         data-panel={props.panel}
         name={props.label}
@@ -13,7 +12,8 @@ export default function Checkbox(props) {
         value={props.setting}
         className={props.label}
         onChange={props.handleChange}
-      />
+      />{" "}
+      <span className="checkbox--label">{props.label}</span>
     </div>
   );
 }

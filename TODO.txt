@@ -7,8 +7,6 @@ Change octave
 -make octaves limited to existing
 -fix key holding bug
 
-Create Knobs
-
 Create Pitch & Mod
 
 Create Displays
