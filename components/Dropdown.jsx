@@ -18,6 +18,7 @@ export default function Button(props) {
         className={props.label}
         name={props.label}
         onChange={props.handleChange}
+        value={value}
       >
         {options}
       </select>

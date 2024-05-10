@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Checkbox(props) {
-  console.log(props.settings);
   return (
     <div className="checkbox">
       <input

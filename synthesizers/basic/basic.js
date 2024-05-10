@@ -27,7 +27,6 @@ class Filter {
 
     this.wet = ctx.createGain();
     this.dry = ctx.createGain();
-    console.log(state.filter);
     if (state.filter.on) {
       const wetAmount = state.filter.wet / 100;
       this.wet.gain.value = wetAmount;
@@ -99,10 +98,12 @@ export function addFilter(state) {
 
 export function addOsc(dataset, state) {
   const freq = noteFreqList[dataset.note][dataset.octave],
-    envelope = state.envelope;
+    envelope = state.envelope,
+    type = state.type;
+
   oscList[dataset.octave][dataset.note] = new Osc(
     ctx,
-    "sine",
+    state.waveform.wave,
     freq,
     envelope,
     filter.filter,

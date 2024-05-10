@@ -27,6 +27,14 @@
         }
       }
     },
+    "waveform": {
+      "inputs": {
+        "wave": {
+          "type": "Dropdown",
+          "contents": ["sine", "square", "sawtooth"]
+        }
+      }
+    },
     "envelope": true,
     "octave": true
   },

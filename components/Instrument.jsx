@@ -31,14 +31,13 @@ export default function Instrument(props) {
 
   function handleChange(e) {
     let targetValue;
-    if (e.target.type === "range") {
+    if (e.target.type === "range" || e.target.type === "select-one") {
       targetValue = e.target.value;
     } else if (e.target.type === "checkbox") {
       targetValue = e.target.checked;
     }
     let targetName = e.target.name,
       targetPanel = e.target.dataset.panel;
-    console.log(state);
     if (!isNaN(targetValue)) {
       targetValue = Number(targetValue);
     }

@@ -46,7 +46,6 @@ export default function Keyboard(props) {
         keyIdx = noteIndex[keyPressed.note],
         fullIdx = keyIdx + keyPressed.octave * 12,
         pressedKey = keyRefs.current[fullIdx];
-      console.log(keyPressed);
 
       return pressedKey;
     }
