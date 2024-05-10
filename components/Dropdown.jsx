@@ -1,8 +1,13 @@
 import React from "react";
+import waveTableNames from "../synthesizers/basic/wave-tables/wave_names.json";
 
 export default function Button(props) {
   const value = props.settings[props.panel][props.label];
-  const options = props.contents.map((option) => {
+  let optionList = props.contents;
+  if (props.panel === "waveform") {
+    optionList = optionList.concat(waveTableNames);
+  }
+  const options = optionList.map((option) => {
     return (
       <option selected={option === value} value={option}>
         {option}

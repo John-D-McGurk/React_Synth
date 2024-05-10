@@ -48,7 +48,19 @@ class Osc {
     this.envelope = envelope;
     this.osc = ctx.createOscillator();
     this.osc.frequency.value = freq;
-    this.osc.type = type || "sine";
+    if (type === "Sine") {
+      this.osc.type = "sine";
+    } else {
+      fetch(`synthesizers/basic/wave-tables/${type}.json`)
+        .then((res) => res.json())
+        .then((json) => {
+          const wave = new PeriodicWave(this.ctx, {
+            real: json.real,
+            imag: json.imag,
+          });
+          this.osc.setPeriodicWave(wave);
+        });
+    }
     this.envGain = ctx.createGain();
     this.envGain.gain.value = 0;
     this.osc.connect(this.envGain);
